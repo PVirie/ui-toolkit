@@ -63,7 +63,7 @@ class Paged_Collection {
         } else if (page_pointer_node != null) {
             this.page_pointer_node = page_pointer_node;
         } else {
-            throw "page_dom or page_pointer_node must be provided";
+            // throw "page_dom or page_pointer_node must be provided";
         }
     }
 
@@ -293,12 +293,12 @@ class Paged_List extends Paged_Collection {
 class Custom_Paged_List extends Paged_Collection {
     constructor(request_data, limit = 10) {
         super(null, request_data, limit);
-        this.list_dom = list_dom;
         this.update();
     }
 
     async update() {
         const data = await this.request_data(this.page, this.limit);
+        if (data == null) return 0;
         return data.length;
     }
 }

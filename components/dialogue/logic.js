@@ -39,16 +39,16 @@ pvirie_dialogue = (function () {
         <div class="float-box">
             <div class="float-content"></div>
             <div class="action alert hide">
-                <input type="button" class="alert-ok-button" value="ok" aria-label="ok">
+                <span class="button center alert-ok-button" tooltip="ok" aria-label="ok">ok</span>
             </div>
             <div class="action confirm hide">
-                <input type="button" class="confirm-ok-button" value="ok" aria-label="ok">
-                <input type="button" class="confirm-cancel-button" value="cancel" aria-label="cancel">
+                <span class="button center confirm-ok-button" tooltip="ok" aria-label="ok">ok</span>
+                <span class="button center confirm-cancel-button" tooltip="cancel" aria-label="cancel">cancel</span>
             </div>
             <div class="action prompt hide">
                 <input type="text" class="prompt-input" aria-label="input">
-                <input type="button" class="prompt-ok-button" value="ok" aria-label="ok">
-                <input type="button" class="prompt-cancel-button" value="cancel" aria-label="cancel">
+                <span class="button center prompt-ok-button" tooltip="ok" aria-label="ok">ok</span>
+                <span class="button center prompt-cancel-button" tooltip="cancel" aria-label="cancel">cancel</span>
             </div>
         </div>
     `;
