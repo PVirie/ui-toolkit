@@ -38,7 +38,7 @@ class Menu_Item_Link extends Menu_Item {
 
     render(menu) {
         this.dom = document.createElement("a");
-        this.dom.classList.add("link", "menu-item");
+        this.dom.classList.add("link", "menu-item", "highlightable");
         if (this.class_name != null) this.dom.classList.add(this.class_name);
         this.dom.href = this.href;
         if (this.link_type == "new_tab") {
@@ -73,7 +73,7 @@ class Menu_Item_Sub extends Menu_Item {
 
     collapse() {
         if (this.sub_menu_obj.dom != null) {
-            this.sub_menu_obj.dom.classList.add("hide");
+            this.sub_menu_obj.dom.classList.add("menu-hide");
             this.arrow.innerHTML = "segment";
         }
         this.sub_menu_obj.collapse_all();
@@ -113,12 +113,12 @@ class Menu_Item_Sub extends Menu_Item {
             function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                this.parent_menu.collapse_all();
-                if (this.sub_menu_obj.dom.classList.contains("hide")) {
-                    this.sub_menu_obj.dom.classList.remove("hide");
+                if (this.sub_menu_obj.dom.classList.contains("menu-hide")) {
+                    this.parent_menu.collapse_all();
+                    this.sub_menu_obj.dom.classList.remove("menu-hide");
                     this.arrow.innerHTML = "arrow_drop_down";
                 } else {
-                    this.sub_menu_obj.dom.classList.add("hide");
+                    this.sub_menu_obj.dom.classList.add("menu-hide");
                     this.arrow.innerHTML = "segment";
                 }
             }.bind(this)
@@ -130,7 +130,7 @@ class Menu_Item_Sub extends Menu_Item {
                 e.preventDefault();
                 e.stopPropagation();
                 this.parent_menu.collapse_all();
-                this.sub_menu_obj.dom.classList.remove("hide");
+                this.sub_menu_obj.dom.classList.remove("menu-hide");
                 this.arrow.innerHTML = "arrow_drop_down";
             }.bind(this)
         );
@@ -180,7 +180,7 @@ class Menu_Item_Button extends Menu_Item {
 
     render(menu) {
         this.dom = document.createElement("div");
-        this.dom.classList.add("menu-button", "menu-item");
+        this.dom.classList.add("menu-button", "menu-item", "highlightable");
         if (this.class_name != null) this.dom.classList.add(this.class_name);
         this.dom.role = "button";
         this.dom.tabIndex = 0;
