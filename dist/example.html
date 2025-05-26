@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="PVirie UI Toolkits" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>PVirie UI Toolkits</title>
+        <!-- stylesheets -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="./example.css" />
+    </head>
+    <body class="light stack full secondary">
+        <div class="banner primary">
+            <h1>PVirie UI Toolkits</h1>
+        </div>
+        <div class="container stack full">
+            <div class="card stack full elevated">
+                <h2>Menu</h2>
+                <div id="menu"></div>
+            </div>
+            <div class="card stack full elevated">
+                <h2>Menu Vertical</h2>
+                <div id="menu-vert"></div>
+            </div>
+            <div class="card stack full elevated example-table">
+                <h2>Paged Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column 1</th>
+                            <th>Column 2</th>
+                            <th>Column 3</th>
+                            <th>Column 4</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">Summary</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="page-control"></div>
+            </div>
+            <div class="card stack full elevated example-list">
+                <h2>Paged List</h2>
+                <div class="list"></div>
+                <div class="page-control"></div>
+            </div>
+            <div class="card stack gap-1 full elevated example-suggest-list">
+                <h2>Suggest list</h2>
+                <div class="deck gap-1">
+                    <input type="search" class="search-input" />
+                    <span aria-label="Select all" role="button" tabindex="0" class="select-all button material-symbols-rounded">all_inclusive</span>
+                    <span aria-label="DeSelect all" role="button" tabindex="0" class="clear-all button material-symbols-rounded">delete</span>
+                </div>
+                <div class="select-list bag gap-1"></div>
+                <div class="suggest-list bag gap-1"></div>
+            </div>
+            <div class="card stack gap-1 full elevated example-text-list">
+                <h2>Text list</h2>
+                <div class="deck gap-1">
+                    <input type="text" class="text-input" />
+                    <span aria-label="DeSelect all" role="button" tabindex="0" class="clear-all button material-symbols-rounded">delete</span>
+                </div>
+                <div class="select-list bag gap-1"></div>
+            </div>
+            <div class="card stack gap-1 full elevated example-audio-recorder">
+                <h2>Audio recorder</h2>
+                <div class="recorder"></div>
+            </div>
+            <div class="card stack full elevated example-dialogue">
+                <h2>Dialogues</h2>
+                <div class="deck gap-1"><input type="button" id="alert-dialog" value="Alert"" /> <input type="button" id="confirm-dialog" value="Confirm"" /> <input type="button" id="prompt-dialog" value="Prompt"" /> <input type="button" id="load-dialog" value="Show 2 seconds loader"" /></div>
+            </div>
+            <div class="card stack gap-1 full elevated example-toggle-button">
+                <h2>Toggle buttons</h2>
+                <div class="deck gap-1">
+                    <div class="button toggle"></div>
+                    <div class="button toggle"></div>
+                    <div class="button toggle"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer primary">
+            <span> &copy; 2025 PVirie All Rights Reserved. </span>
+        </div>
+        <script src="./pv_uitoolkits.min.js"></script>
+        <script>
+            const build_menu = function (menu_container, vertical = false) {
+                const toggle_theme_button = document.createElement("div");
+                toggle_theme_button.id = "toggle-theme";
+                const light_icon = document.createElement("span");
+                light_icon.classList.add("material-symbols-rounded", "light");
+                light_icon.setAttribute("aria-label", "Light mode");
+                light_icon.role = "button";
+                light_icon.tabIndex = 0;
+                light_icon.innerHTML = "light_mode";
+                const dark_icon = document.createElement("span");
+                dark_icon.classList.add("material-symbols-rounded", "dark");
+                dark_icon.setAttribute("aria-label", "Dark mode");
+                dark_icon.role = "button";
+                dark_icon.tabIndex = 0;
+                dark_icon.innerHTML = "nightlight";
+                toggle_theme_button.appendChild(light_icon);
+                toggle_theme_button.appendChild(dark_icon);
+                toggle_theme_button.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    if (document.body.classList.contains("light")) {
+                        document.body.classList.remove("light");
+                        toggle_theme_button.classList.add("toggled");
+                    } else {
+                        document.body.classList.add("light");
+                        toggle_theme_button.classList.remove("toggled");
+                    }
+                });
+                toggle_theme_button.addEventListener("mouseover", (event) => {
+                    event.preventDefault();
+                    toggle_theme_button.classList.add("highlight");
+                });
+                toggle_theme_button.addEventListener("mouseleave", (event) => {
+                    event.preventDefault();
+                    toggle_theme_button.classList.remove("highlight");
+                });
+
+                const menu_items = [
+                    new Menu_Item("menu", "Menu"),
+                    new Menu_Item_Link("home", "Home", "./example.html", "self", true),
+                    new Menu_Item_Button("logout", "Logout", function (e) {
+                        alert("Logout");
+                    }),
+                    new Menu_Item_Hr(),
+                    new Menu_Item_Sub("account_circle", "Account", [new Menu_Item_Link("home", "Home", "/example.html", "self", true), new Menu_Item_Link("home", "Home", "/example.html", "self", true)], !vertical),
+                    new Menu_Item_Hr(),
+                    new Menu_Item_Sub("account_circle", "Account", [new Menu_Item_Link("home", "Home", "/example.html", "self", true), new Menu_Item_Link("home", "Home", "/example.html", "self", true)], !vertical),
+                    new Menu_Item_Hr(),
+                    new Menu_Item_DOM(toggle_theme_button),
+                ];
+
+                const menu_obj = new Menu(menu_items);
+                menu_obj.render(menu_container, {
+                    mouseover: function (item_dom, item) {
+                        item_dom.classList.add("highlight");
+                    },
+                    mouseleave: function (item_dom, item) {
+                        item_dom.classList.remove("highlight");
+                    },
+                });
+            };
+
+            window.addEventListener("load", async function () {
+                ui_toolkit_symbols_class = "material-symbols-rounded";
+
+                build_menu(document.querySelector("#menu"));
+                build_menu(document.querySelector("#menu-vert"), true);
+
+                const max_items = 128;
+
+                for (const container_dom of document.querySelectorAll(".example-table")) {
+                    const table = new Paged_Table(
+                        container_dom.querySelector("table"),
+                        container_dom.querySelector(".page-control"),
+                        async function (p, l, s) {
+                            console.log(p, l, s);
+                            const rows = [];
+                            const start_index = (p - 1) * l;
+                            const end_index = Math.min(p * l, max_items);
+                            for (let i = start_index; i < end_index; i++) {
+                                const row = [];
+                                for (let j = 0; j < 4; j++) {
+                                    if (s != null && s.order === "desc") row.push(`Row ${max_items - (p - 1) * l - (i - start_index)} Cell ${j + 1}`);
+                                    else row.push(`Row ${i + 1} Cell ${j + 1}`);
+                                }
+                                rows.push(row);
+                            }
+                            return rows;
+                        },
+                        (limit = 10),
+                        (filename = "example_table.csv")
+                    );
+                }
+
+                for (const container_dom of document.querySelectorAll(".example-list")) {
+                    const list = new Paged_List(
+                        container_dom.querySelector(".list"),
+                        container_dom.querySelector(".page-control"),
+                        async function (p, l, s) {
+                            console.log(p, l, s);
+                            const start_index = (p - 1) * l;
+                            const end_index = Math.min(p * l, max_items);
+                            const items = [];
+                            const icon_list = ["hearing", "article", "visibility", "mic"];
+                            for (let i = start_index; i < end_index; i++) {
+                                const item_div = document.createElement("div");
+                                item_div.classList.add("item");
+                                // random choose icon
+                                const icon = icon_list[Math.floor(Math.random() * icon_list.length)];
+                                item_div.innerHTML = `<span class="icon material-symbols-rounded">${icon}</span><div class="info"><h3>${i + 1}</h3><div class="detail">lorem ipsum</div></div>`;
+                                items.push(item_div);
+                            }
+                            return items;
+                        },
+                        (limit = 10)
+                    );
+                }
+
+                const build_tag = function (icon, name) {
+                    const elem = document.createElement("div");
+                    elem.classList.add("elevated");
+                    const icon_button = document.createElement("span");
+                    icon_button.classList.add("material-symbols-rounded");
+                    icon_button.innerText = icon;
+                    const tag = document.createElement("span");
+                    tag.innerHTML = name;
+                    elem.appendChild(tag);
+                    elem.appendChild(icon_button);
+                    return elem;
+                };
+
+                for (const container_dom of document.querySelectorAll(".example-suggest-list")) {
+                    const suggest_list = new Suggest_list(container_dom.querySelector(".search-input"), container_dom.querySelector(".select-list"), container_dom.querySelector(".suggest-list"), build_tag.bind(null, "radio_button_checked"), build_tag.bind(null, "close"));
+                    suggest_list.add_items(["Apple", "Banana", "Cherry", "Durian", "Elderberry", "Fig", "Grape", "Honeydew", "Jackfruit", "Kiwi", "Lemon", "Mango", "Nectarine", "Orange", "Papaya", "Quince", "Raspberry", "Strawberry", "Tangerine", "Ugli", "Watermelon"]);
+
+                    container_dom.querySelector(".select-all").addEventListener("click", function () {
+                        suggest_list.select_all();
+                    });
+
+                    container_dom.querySelector(".clear-all").addEventListener("click", function () {
+                        suggest_list.clear_selected();
+                    });
+                }
+
+                for (const container_dom of document.querySelectorAll(".example-text-list")) {
+                    const text_list = new Text_list(container_dom.querySelector(".text-input"), container_dom.querySelector(".select-list"), build_tag.bind(null, "close"));
+
+                    container_dom.querySelector(".clear-all").addEventListener("click", function () {
+                        text_list.clear_selected();
+                    });
+                }
+
+                await pvirie_recorder.init();
+
+                for (const container_dom of document.querySelectorAll(".example-audio-recorder")) {
+                    const recorder = pvirie_recorder.build_control(container_dom.querySelector(".recorder"));
+                }
+
+                for (const container_dom of document.querySelectorAll(".example-dialogue")) {
+                    container_dom.querySelector("#alert-dialog").addEventListener("click", async function () {
+                        pvirie_dialogue.display_load(true);
+                        await pvirie_dialogue.alert("This is an alert message.");
+                        pvirie_dialogue.display_load(false);
+                    });
+
+                    container_dom.querySelector("#confirm-dialog").addEventListener("click", async function () {
+                        const result = await pvirie_dialogue.confirm("This is a confirm message.");
+                        await pvirie_dialogue.alert(`You selected ${result ? "Yes" : "No"}.`);
+                    });
+
+                    container_dom.querySelector("#prompt-dialog").addEventListener("click", async function () {
+                        const prompt_dom = document.createElement("div");
+                        prompt_dom.innerHTML = `This is a prompt message.`;
+                        const result = await pvirie_dialogue.prompt(prompt_dom);
+                        await pvirie_dialogue.alert(`You entered ${result}.`);
+                    });
+
+                    container_dom.querySelector("#load-dialog").addEventListener("click", async function () {
+                        pvirie_dialogue.display_load(true);
+                        setTimeout(() => {
+                            pvirie_dialogue.display_load(false);
+                        }, 2000);
+                    });
+                }
+
+                for (const container_dom of document.querySelectorAll(".example-toggle-button")) {
+                    for (const button of container_dom.querySelectorAll(".button.toggle")) {
+                        const toggle_button = new Toggle_Button(button, ["home", "search", "menu", "close"], function (index) {
+                            console.log(index);
+                        });
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

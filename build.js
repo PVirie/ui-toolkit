@@ -21,8 +21,8 @@ async function main() {
         }
 
         minify(combinedCode).then((minified) => {
-            fs.writeFileSync("dist/vc_uitoolkits.min.js", minified.code);
-            console.log("All files minified and bundled into dist/vc_uitoolkits.min.js");
+            fs.writeFileSync("dist/pv_uitoolkits.min.js", minified.code);
+            console.log("All files minified and bundled into dist/pv_uitoolkits.min.js");
         });
     } catch (err) {
         console.error(err);
