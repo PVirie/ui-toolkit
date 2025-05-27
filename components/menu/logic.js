@@ -138,7 +138,7 @@ class Menu_Item_Sub extends Menu_Item {
         menu.appendChild(this.dom);
 
         this.sub_menu_obj.render(menu, events, this.append_parent, false);
-        this.sub_menu_obj.dom.classList.add("hide");
+        this.sub_menu_obj.dom.classList.add("menu-hide");
     }
 }
 

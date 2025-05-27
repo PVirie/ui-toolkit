@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-.material-symbols-rounded {
+.material-symbols-outlined {
     font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
@@ -82,16 +82,16 @@ body.light {
 }
 
 .framed {
-    border: solid 1px var(--accent);
+    border: solid 1px var(--edge-color);
 }
 
 .elevated {
-    box-shadow: 2px 2px 5px #111f;
+    box-shadow: 1px 1px 2px #111f;
 }
 
 .highlight {
-    color: var(--neutral);
-    background-color: var(--neutral-background);
+    color: var(--accent-color);
+    background-color: var(--accent-background);
 }
 
 ::-webkit-scrollbar {
@@ -100,7 +100,7 @@ body.light {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--accent);
+    background-color: var(--tertiary-color);
     border-radius: 5px;
 }
 
@@ -126,13 +126,13 @@ a {
 
 /* begin accent color */
 :root {
-    accent-color: var(--accent);
+    accent-color: var(--neutral-color);
 }
 :focus-visible {
-    outline-color: var(--accent);
+    outline-color: var(--accent-color);
 }
 ::selection {
-    color: var(--accent);
+    color: var(--accent-color);
     background-color: var(--accent-background);
 }
 /* end accent color */
@@ -141,8 +141,9 @@ a {
 input,
 select,
 .combo {
-    color: var(--accent);
-    background-color: var(--accent-background);
+    color: var(--tertiary-color);
+    background-color: var(--tertiary-background);
+    outline: solid 1px var(--edge-color);
     height: 2rem;
     border: none;
     border-bottom: solid 1px var(--neutral);
@@ -201,7 +202,7 @@ input[type="button"]:active {
 }
 
 .button.toggled {
-    color: var(--accent);
+    color: var(--accent-color);
     background-color: var(--accent-background);
 }
 
@@ -327,14 +328,14 @@ body {
 
 .card {
     padding: 1rem 2rem;
-    border-radius: 2rem;
+    border-radius: 0.5rem;
 }
 
 /* === All === */
 
 .button {
-    background-color: var(--accent-background);
-    color: var(--accent);
+    background-color: var(--tertiary-background);
+    color: var(--tertiary-color);
 }
 
 /* === Menu === */
@@ -369,24 +370,25 @@ body {
 
     overflow: hidden;
 
-    color: var(--accent);
-    background-color: var(--accent-background);
+    color: var(--tertiary-color);
+    background-color: var(--tertiary-background);
 
     padding: 1rem 2rem;
     max-height: 4rem;
     transition: padding 0.5s ease-in-out, max-height 0.5s ease-in-out;
 }
 
-#menu .sub-menu.hide {
+#menu .sub-menu.menu-hide {
     max-height: 0;
     padding: 0 0;
 }
 
-#menu .sub-menu + .sub-menu:not(.hide) {
-    border-top: solid 1px var(--accent);
+#menu .sub-menu + .sub-menu:not(.menu-hide) {
+    border-top: solid 1px var(--edge-color);
 }
 
 #menu .sub-menu > * {
+    flex: 0 0 auto;
     cursor: pointer;
     height: 2rem;
     padding: 0rem 0.5rem;
@@ -418,8 +420,8 @@ body {
 /* === Menu Vertical === */
 
 #menu-vert {
-    color: var(--accent);
-    background-color: var(--accent-background);
+    color: var(--tertiary-color);
+    background-color: var(--tertiary-background);
 
     height: 20rem;
     width: fit-content;
@@ -452,7 +454,7 @@ body {
     overflow-y: auto;
 }
 
-#menu-vert .sub-menu.hide {
+#menu-vert .sub-menu.menu-hide {
     max-height: 0;
 }
 
@@ -578,8 +580,8 @@ table tfoot td:last-child {
 /* color to table */
 
 table thead th {
-    background-color: var(--accent-background);
-    color: var(--accent);
+    background-color: var(--tertiary-background);
+    color: var(--tertiary-color);
     cursor: pointer;
     user-select: none;
 }
@@ -593,8 +595,8 @@ table tbody tr:nth-child(even) {
 }
 
 table tfoot td {
-    background-color: var(--accent-background);
-    color: var(--accent);
+    background-color: var(--tertiary-background);
+    color: var(--tertiary-color);
 }
 
 /* List */
@@ -618,27 +620,29 @@ table tfoot td {
     align-items: center;
     gap: 0rem;
 
-    filter: drop-shadow(1px 1px 2px #111f);
+    /* filter: drop-shadow(1px 1px 2px #111f); */
 }
 
 .list > .item > .icon {
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
     padding: 0.5rem 0.5rem;
     font-size: 4rem;
-    background-color: var(--accent-background);
-    color: var(--accent);
+    background-color: var(--tertiary-background);
+    color: var(--tertiary-color);
+    outline: solid 1px var(--edge-color);
     width: 5rem;
     height: 5rem;
 }
 
 .list > .item > .info {
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     padding: 0.5rem 0.5rem;
 
     background-color: var(--neutral-background);
     color: var(--neutral);
+    outline: solid 1px var(--edge-color);
 
     display: flex;
     flex-flow: column nowrap;
@@ -677,7 +681,7 @@ table tfoot td {
 /* === Suggest list === */
 
 .select-list > * {
-    border: solid 1px var(--accent);
+    border: solid 1px var(--edge-color);
     border-radius: 999px;
     padding: 0.2rem 0.5rem;
 
@@ -692,7 +696,7 @@ table tfoot td {
 }
 
 .suggest-list > * {
-    border: solid 1px var(--accent);
+    border: solid 1px var(--edge-color);
     border-radius: 999px;
     padding: 0.2rem 0.5rem;
 
@@ -726,7 +730,7 @@ table tfoot td {
     user-select: none;
 
     border-radius: 0.5rem;
-    background-color: var(--accent-background);
+    background-color: var(--tertiary-background);
 }
 
 .record-button .visualizer {
@@ -745,9 +749,9 @@ table tfoot td {
     left: 0;
 }
 
-.bevel .material-symbols-rounded {
+.bevel .material-symbols-outlined {
     font-size: 5rem;
-    color: #fff;
+    color: var(--accent-color);
 }
 
 .record-button.toggled .record {
@@ -757,7 +761,7 @@ table tfoot td {
 .recorder .block {
     position: absolute;
     opacity: 0;
-    background-color: var(--accent);
+    background-color: var(--accent-background);
     border-radius: 0.1rem;
 }
 
@@ -876,8 +880,8 @@ table tfoot td {
 
     padding: 1rem 2rem;
     border-radius: 1rem;
-    border: solid 1px var(--accent);
-    box-shadow: 2px 2px 5px #111f;
+    border: solid 1px var(--edge-color);
+    box-shadow: 1px 1px 2px #111f;
 }
 
 .float-message::backdrop {
@@ -908,9 +912,6 @@ table tfoot td {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-
-    color: var(--neutral) !important;
-    background: var(--neutral-background) !important;
 }
 
 /* -- END: Messages -- */
