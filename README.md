@@ -10,6 +10,9 @@ Be sure to include the following in the head of your HTML file:
 
 ```
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script>
+    ui_toolkit_symbols_class = "material-symbols-outlined";
+</script>
 ```
 
 Or only subset of the icon variation to reduce the file size.
