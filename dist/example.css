@@ -607,7 +607,24 @@ table tfoot td {
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 0rem;
+    padding: 1rem 1rem;
+}
+
+.file-item {
+    cursor: pointer;
+    user-select: none;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.file-item > .icon {
+    padding: 0.5rem 0.5rem;
+    font-size: 4rem;
+    width: 5rem;
+    height: 5rem;
 }
 
 /* List */
@@ -693,7 +710,7 @@ table tfoot td {
 
 .select-list > * {
     border: solid 1px var(--edge-color);
-    border-radius: 999px;
+    border-radius: 0.5rem;
     padding: 0.2rem 0.5rem;
 
     display: flex;
@@ -708,7 +725,7 @@ table tfoot td {
 
 .suggest-list > * {
     border: solid 1px var(--edge-color);
-    border-radius: 999px;
+    border-radius: 0.5rem;
     padding: 0.2rem 0.5rem;
 
     display: flex;

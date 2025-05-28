@@ -4,15 +4,31 @@ class File_Explorer extends Paged_Collection {
         this.list_dom = list_dom;
         this.sort_by = null;
         this.path = "";
+        this.request_data = request_data.bind(this);
 
         const location_input = document.createElement("input");
         location_input.type = "text";
         location_input.classList.add("location-input");
         location_input.value = this.path;
-        location_input.addEventListener("change", (event) => {
-            this.set_path(new_path);
-        });
+        location_input.addEventListener(
+            "change",
+            function (event) {
+                this.set_path(event.target.value.trim());
+            }.bind(this)
+        );
         this.page_dom.prepend(location_input);
+        this.location_input = location_input;
+
+        const up_directory_button = document.createElement("span");
+        up_directory_button.classList.add("button", ui_toolkit_symbols_class);
+        up_directory_button.setAttribute("aria-label", "First page");
+        up_directory_button.role = "button";
+        up_directory_button.tabIndex = 0;
+        up_directory_button.innerHTML = "drive_folder_upload";
+        up_directory_button.onclick = () => {
+            this.cd("..");
+        };
+        this.page_dom.prepend(up_directory_button);
 
         this.update();
     }
@@ -23,6 +39,7 @@ class File_Explorer extends Paged_Collection {
         for (const item_dom of data) {
             this.list_dom.appendChild(item_dom);
         }
+        this.location_input.value = this.path;
         return data.length;
     }
 
