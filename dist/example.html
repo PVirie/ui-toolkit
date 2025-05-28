@@ -45,6 +45,11 @@
                 </table>
                 <div class="page-control"></div>
             </div>
+            <div class="card stack full elevated example-file-explorer">
+                <h2>File Explorer</h2>
+                <div class="page-control"></div>
+                <div class="list"></div>
+            </div>
             <div class="card stack full elevated example-list">
                 <h2>Paged List</h2>
                 <div class="list"></div>
@@ -178,6 +183,30 @@
                         },
                         (limit = 10),
                         (filename = "example_table.csv")
+                    );
+                }
+
+                for (const container_dom of document.querySelectorAll(".example-file-explorer")) {
+                    const file_explorer = new File_Explorer(
+                        container_dom.querySelector(".list"),
+                        container_dom.querySelector(".page-control"),
+                        async function (p, l, s, path) {
+                            console.log(p, l, s);
+                            const start_index = (p - 1) * l;
+                            const end_index = Math.min(p * l, max_items);
+                            const items = [];
+                            const icon_list = ["hearing", "article", "visibility", "mic"];
+                            for (let i = start_index; i < end_index; i++) {
+                                const item_div = document.createElement("div");
+                                item_div.classList.add("item");
+                                // random choose icon
+                                const icon = icon_list[Math.floor(Math.random() * icon_list.length)];
+                                item_div.innerHTML = `<span class="icon ${ui_toolkit_symbols_class}">${icon}</span><div class="info"><h3>${i + 1}</h3><div class="detail">lorem ipsum</div></div>`;
+                                items.push(item_div);
+                            }
+                            return items;
+                        },
+                        (limit = 10)
                     );
                 }
 

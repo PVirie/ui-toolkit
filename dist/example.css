@@ -599,6 +599,17 @@ table tfoot td {
     color: var(--tertiary-color);
 }
 
+/* File explorer */
+
+.example-file-explorer .list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0rem;
+}
+
 /* List */
 
 .example-list .list {

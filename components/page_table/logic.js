@@ -274,9 +274,7 @@ Page_Table = Paged_Table;
 class Paged_List extends Paged_Collection {
     constructor(list_dom, page_dom, request_data, limit = 10) {
         super(page_dom, request_data, limit);
-
         this.list_dom = list_dom;
-
         this.update();
     }
 
