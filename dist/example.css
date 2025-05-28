@@ -761,7 +761,7 @@ table tfoot td {
 .recorder .block {
     position: absolute;
     opacity: 0;
-    background-color: var(--accent-background);
+    background-color: var(--accent-color);
     border-radius: 0.1rem;
 }
 
